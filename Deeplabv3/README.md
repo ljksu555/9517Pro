@@ -1,13 +1,11 @@
 ## DeepLabV3
 
-[Rethinking Atrous Convolution for Semantic Image Segmentation](https://arxiv.org/abs/1706.05587) - DeepLabV3
-
 Implementation of **DeepLabV3** using PyTorch
 
 ### Available architectures 
 | DeepLabV3               | Backbone          |mean IoU             |
 | ----------------------- | ----------------- |---------------------|
-| deeplabv3_resnet50      | resnet50          |58.6(after 5 epochs) |
+| deeplabv3_resnet50      | resnet50          |54.02(after 5 epochs) |
 | deeplabv3_resnet101     | resnet101         |-                    |
 | deeplabv3_mobilenetv3   | mobilenetv3_large |-                    |
 
@@ -44,28 +42,3 @@ num_epochs =??
 python CustomDataset.py
      
 ```
-
-**Distributed Data Parallel:** 
-
-1. deeplabv3_resnet50:
-
-```
-python -m torch.distributed.launch --nproc_per_node=2 --use_env train.py --lr 0.02 --dataset coco -b 8 --model deeplabv3_resnet50
-
-```
-
-1. deeplabv3_resnet101:
-
-
-```
-python -m torch.distributed.launch --nproc_per_node=2 --use_env train.py --lr 0.02 --dataset coco -b 8 --model deeplabv3_resnet101
-
-```
-
-1. deeplabv3_mobilenet_v3_large:
-
-```
-python -m torch.distributed.launch --nproc_per_node=2 --use_env train.py --lr 0.02 --dataset coco -b 8 --model deeplabv3_mobilenet_v3_large
-
-
-
