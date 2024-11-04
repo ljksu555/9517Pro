@@ -1,13 +1,15 @@
 ## DeepLabV3
 
+[Rethinking Atrous Convolution for Semantic Image Segmentation](https://arxiv.org/abs/1706.05587) - DeepLabV3
+
 Implementation of **DeepLabV3** using PyTorch
 
 ### Available architectures 
 | DeepLabV3               | Backbone          |mean IoU             |
 | ----------------------- | ----------------- |---------------------|
-| deeplabv3_resnet50      | resnet50          |54.02(after 5 epochs) |
-| deeplabv3_resnet101     | resnet101         |-                    |
-| deeplabv3_mobilenetv3   | mobilenetv3_large |-                    |
+| deeplabv3_resnet50      | resnet50          | |
+| deeplabv3_resnet101     | resnet101         |76.14(after 30 epochs)                  |
+
 
 ### Dataset
 ```
@@ -35,10 +37,15 @@ Implementation of **DeepLabV3** using PyTorch
 ```
 
 ### Train
-**Note**: Modify these arguments according to your data and model in `CustomDataset.py`
+**Note**: Modify these arguments according to your data and model in `Main.py`
 ```
-num_epochs =??
+python Main.py --train --epochs 30  
+```
 
-python CustomDataset.py
-     
+### Val and Predict
 ```
+python Main.py
+```
+
+
+
