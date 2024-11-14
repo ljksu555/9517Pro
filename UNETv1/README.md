@@ -18,4 +18,4 @@ turtles-data
 
 2. **Run the Notebook**: After updating the paths, run the notebook cells to load and process the dataset for training or evaluation tasks.
 
-3. **Training and Evaluation**: Use the dataset to train object detection models like YOLO or any compatible model. Ensure `data.yaml` is properly configured to reflect the dataset structure and class information.
+
