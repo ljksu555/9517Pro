@@ -1,7 +1,5 @@
 ## Turtles Dataset
 
-This dataset is designed for training and evaluating object detection models on turtle images. It includes annotations and images divided into training and testing sets, with configuration details provided in `data.yaml`.
-
 ```plaintext
 turtles-data
 ├── data
