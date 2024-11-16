@@ -1,21 +1,40 @@
-## Turtles Dataset
+## Directory Structure
+
+Ensure that your `base_path` directory is structured as follows:
 
 ```plaintext
-turtles-data
-├── data
-│   ├── annotations
-│   │   ├── annotations_train.json
-│   │   ├── annotations_test.json
-│   │   ├── annotations_valid.json
-│   ├── metadata_splits.csv
-│   ├── metadata.csv
-│   ├── annotations.json
+├── base_path
+|   ├── turtles-data
+|   |    ├── data
+|   |    │   ├── annotations
+|   |    │   ├── images
+|   |    │   ├── metadata_splits.csv
+|   |    │   ├── metadata.csv
+|   |    │   ├── annotations.json
 ```
 
-## Usage
+---
 
-1. **Modify Paths in Jupyter Notebook**: Open the Jupyter Notebook you intend to use with this dataset. Update the dataset paths (e.g., `annotations.json`, etc) in the notebook to match your local directory structure.
+## Steps to Set Up
 
-2. **Run the Notebook**: After updating the paths, run the notebook cells to load and process the dataset for training or evaluation tasks.
+### 1. Define `base_path`
+
+In the UNETv1.ipynb, **modify the 6th line** to specify your `base_path`. For example:
+
+```python
+base_path = "/root/autodl-fs"
+```
+
+## Steps to Run the Code
+
+### 1. Install Dependencies
+
+Ensure all required Python packages are installed. Run:
+
+```bash
+pip install torch torchvision numpy pandas matplotlib seaborn Pillow scikit-learn pycocotools
+```
+
+### 2. Run the code in UNETv1.ipynb
 
 

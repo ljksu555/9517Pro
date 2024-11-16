@@ -1,67 +1,92 @@
-## Turtles Dataset
 
-This dataset is designed for training and evaluating object detection models on turtle images. It includes annotations and images divided into training and testing sets, with configuration details provided in `data.yaml`.
+# YOLOv8 and SAM 
+
+This repository demonstrates how to train a YOLOv8 model for object detection and integrate it with a SAM model for segmentation tasks using the turtles dataset. Follow the steps below to set up the environment and execute the code.
+
+---
+
+## Directory Structure
+
+Ensure that your `base_path` directory is structured as follows:
 
 ```plaintext
-turtles-data
-├── data
-│   ├── annotations
-│   │   ├── annotations_train.json
-│   │   ├── annotations_test.json
-│   │   ├── annotations_valid.json
-│   ├── metadata_splits.csv
-│   ├── metadata.csv
-│   ├── annotations.json
-├── images
-│   ├── train
-│   │   ├── xxx1.png or .jpg
-│   │   ├── xxx2.png or .jpg
-│   │   └── ...
-│   ├── test
-│   │   ├── yyy1.png or .jpg
-│   │   ├── yyy2.png or .jpg
-│   │   └── ...
-├── labels
-│   ├── train
-│   │   ├── xxx1.txt
-│   │   ├── xxx2.txt
-│   │   └── ...
-│   ├── test
-│   │   ├── yyy1.txt
-│   │   ├── yyy2.txt
-│   │   └── ...
-├── runs
-│   └── ...
-└── data.yaml
+├── base_path
+|   ├── turtles-data
+|   |    ├── data
+|   |    │   ├── annotations
+|   |    │   ├── images
+|   |    │   ├── metadata_splits.csv
+|   |    │   ├── metadata.csv
+|   |    │   ├── annotations.json
 ```
 
-### data.yaml Configuration
+---
 
-- `train`: Path to the training images.
-- `val`: Path to the validation images.
-- `nc`: Number of classes (set to 3 in this dataset, but modify as needed).
-- `names`: List of class names, which in this dataset are `shell`, `fin`, and `head`.
+## Steps to Set Up
 
-### Example `data.yaml`
+### 1. Define `base_path`
+
+In the yolov8+sam.ipynb, **modify the 6th line** to specify your `base_path`. For example:
+
+```python
+base_path = "/root/autodl-fs"
+```
+
+### 2. Create `data.yaml`
+
+Navigate to `f'{base_path}/archive/turtles-data'` and create a new file named `data.yaml`. The file should contain the following content, with `base_path` replaced by your actual directory path:
+
+#### Example `data.yaml`
 
 ```yaml
 # Path to the training dataset
-train: D:/archive/turtles-data/images/train
+train: /root/autodl-fs/archive/turtles-data/images/train
 
 # Path to the validation dataset
-val: D:/archive/turtles-data/images/test
+val: /root/autodl-fs/archive/turtles-data/images/test
 
 # Number of classes (assuming there are 3 classes; modify to actual class count)
 nc: 3
 
 # Class names
 names: ['shell', 'fin', 'head']
+```
+
+---
+
+### 3. Download the SAM Model Checkpoint
+
+The code requires a specific checkpoint file for the SAM model. Download the `sam_vit_h_4b8939.pth` file and place it in your `base_path`.
+
+- **Download Link**: [sam_vit_h_4b8939.pth](https://huggingface.co/spaces/abhishek/StableSAM/blob/main/sam_vit_h_4b8939.pth)
+
+After downloading, your directory should look like this:
+
+```plaintext
+├── base_path
+|   ├── sam_vit_h_4b8939.pth
+|   ├── turtles-data
+|   |    ├── data
+|   |    │   ├── annotations
+|   |    │   ├── images
+|   |    │   ├── metadata_splits.csv
+|   |    │   ├── metadata.csv
+|   |    │   ├── annotations.json
+```
+
+---
+
+## Steps to Run the Code
+
+### 1. Install Dependencies
+
+Ensure all required Python packages are installed. Run:
+
+```bash
+pip install torch numpy pandas matplotlib seaborn Pillow scikit-learn pycocotools ultralytics segment-anything
 
 ```
-## Usage
 
-1. **Modify Paths in Jupyter Notebook**: Open the Jupyter Notebook you intend to use with this dataset. Update the dataset paths (e.g., `data.yaml`, `images/train`, `images/test`, and `annotations.json`, etc) in the notebook to match your local directory structure.
+### 2. Run the code in yolov8+sam.ipynb
 
-2. **Run the Notebook**: After updating the paths, run the notebook cells to load and process the dataset for training or evaluation tasks.
 
-3. **Training and Evaluation**: Use the dataset to train object detection models like YOLO or any compatible model. Ensure `data.yaml` is properly configured to reflect the dataset structure and class information.
